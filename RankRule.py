@@ -1,10 +1,9 @@
-from RuleSet import RuleSet
 from SkyRule import SkyRule
 
 class RankRule(object):
 
-    def __init__(self, R):
-        self.R = R.copy()
+    def __init__(self, ruleSet):
+        self.R = ruleSet.copy()
 
     def getUndominatedSets(self):
         Ep = []
@@ -17,4 +16,4 @@ class RankRule(object):
         return Ep
 
     def getRankedRules(self):
-        return [r for e in self.getUndominatedSets() for r in e]
+        return [rule for ep in self.getUndominatedSets() for rule in ep]

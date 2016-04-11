@@ -1,4 +1,3 @@
-import unittest
 from AssociationRule import AssociationRule
 
 class RuleSet(object):
@@ -7,6 +6,9 @@ class RuleSet(object):
             self.rules = []
         else:
             self.rules = rules
+
+    def appendRule(self, rule):
+        self.rules.append(rule)
 
     def getReferenceRule(self):
         reference = list(self.rules[0].measures)

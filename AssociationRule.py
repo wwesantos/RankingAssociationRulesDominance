@@ -1,5 +1,3 @@
-import unittest
-
 class AssociationRule(object):
     def __init__(self, rule, measures):
         try:
@@ -17,6 +15,9 @@ class AssociationRule(object):
 
     def __str__(self):
         return '{} = {}'.format(self.rule, self.measures)
+
+    def joinBy(self, char):
+        return self.rule + ";" + char.join([str(m) for m in self.measures])
 
     #Degree of similarity
     def degSim(self,r2):
