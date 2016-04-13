@@ -24,7 +24,11 @@ if __name__ == '__main__':
     optparser.add_option('-f', '--inputFile',
                          dest='input',
                          help='filename containing csv',
-                         default=None)
+                         default="data/RulesArticle.txt")
+    optparser.add_option('-o', '--outputFile',
+                         dest='output',
+                         help='output file',
+                         default="RankedRules.txt")
     optparser.add_option('-a', '--withAllMeasuresAndRules',
                          dest='all',
                          help='with all measures and rules',
@@ -32,16 +36,8 @@ if __name__ == '__main__':
 
     (options, args) = optparser.parse_args()
 
-    ruleSet = RuleSet(None)
-    if options.input is not None:
-        print("Opening file "+options.input)
-        ruleSet = ruleSetFromFile(options.input)
-    else:
-        #file = open("data/RulesArticle.txt","r")
-        print('No dataset filename specified, system with exit\n')
-        sys.exit('System will exit')
-
-    fileExit = open("output/RankedRules.txt","w")
+    print("Opening file "+options.input)
+    ruleSet = ruleSetFromFile(options.input)
 
     #Ranking the rules
     print("Creating rank...")
@@ -49,13 +45,13 @@ if __name__ == '__main__':
     rankedRules = rankRule.getRankedRules()
 
     #Writing output
-    print("Creating results file ./output/RankedRules.txt...")
-
+    print("Creating results file /output/"+options.output)
+    output = open("output/"+options.output,"w")
     for rule in rankedRules:
         if options.all:
-            fileExit.write(rule.__str__(withMeasuresAndRule=True)+"\n")
+            output.write(rule.__str__(withMeasuresAndRule=True)+"\n")
         else:
-            fileExit.write(rule.__str__()+"\n")
+            output.write(rule.__str__()+"\n")
 
-    print("File ./output/RankedRules.txt created.")
+    print("File /output/{} created.".format(options.output))
     print("Program finalized.")
