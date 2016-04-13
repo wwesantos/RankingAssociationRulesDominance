@@ -4,14 +4,19 @@ Authors: S. Bouker ; LIMOS, Clermont Univ., Clermont-Ferrand, France ; R. Saidi 
 
 <h1>Usage</h1>
 
-<h2>With just the rank</h2>
+<h2>Without optional parameters</h2>
 <pre><code>
-  		python .\main.py -f .\data\RulesArticle.txt
+  		python .\main.py
 </code></pre>
 
-<h2>With all measures and rules</h2>
+<h2>With all optional parameters</h2>
+<ul>
+  <li>-f -> input filename containing csv</li>
+  <li>-a -> include all measures and rules in the rank file</li>
+  <li>-o -> output filename</li>
+</ul>
 <pre><code>
-  		python .\main.py -f .\data\RulesArticle.txt -a y
+  		python .\main.py -f .\data\RulesArticle.txt -a y -o .\data\RankedRules.txt
 </code></pre>
 
 <h2>Output</h2>
