@@ -8,10 +8,10 @@ class RankRule(object):
     def getUndominatedSets(self):
         Ep = []
         while(self.R.rules):
-            sky = SkyRule(self.R)
-            undominated = sky.getUndominatedRules()
-            Ep.append(undominated)
-            for r in undominated:
+            skyRule = SkyRule(self.R)
+            undominatedRules = skyRule.getUndominatedRules()
+            Ep.append(undominatedRules)
+            for r in undominatedRules:
                 self.R.removeRule(r)
         return Ep
 
