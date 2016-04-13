@@ -1,23 +1,24 @@
 class AssociationRule(object):
-    def __init__(self, rule, measures):
+    def __init__(self, id, rule, measures):
         try:
-            if not measures or not rule:
+            if not id or not rule or not measures:
                 raise ValueError
+            self.id = id
+            self.rule = rule
             self.measures = tuple([float(x) for x in measures])
             self.len = len(measures)
-            self.rule = rule
 
         except ValueError:
-            raise ValueError('The measures and the rule must be nonempty')
+            raise ValueError('The id, rule, and measures must be nonempty')
 
         except TypeError:
             raise TypeError('The measures must be an vector')
 
-    def __str__(self):
-        return '{} = {}'.format(self.rule, self.measures)
-
-    def joinBy(self, char):
-        return self.rule + ";" + char.join([str(m) for m in self.measures])
+    def __str__(self, withMeasuresAndRule = False):
+        if withMeasuresAndRule:
+            return '{};{};{}'.format(self.id, self.rule, ";".join([str(m) for m in self.measures]))
+        else:
+            return str(self.id)
 
     #Degree of similarity
     def degSim(self,r2):

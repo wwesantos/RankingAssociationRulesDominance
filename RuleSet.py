@@ -15,7 +15,7 @@ class RuleSet(object):
         for r in self.rules:
             for i in range(r.len):
                 reference[i] = max(r.measures[i], reference[i])
-        return AssociationRule("REFERENCE",reference)
+        return AssociationRule(-1, "REFERENCE",reference)
 
     def getrMinDegSim(self, reference):
         bestDegSim = reference.degSim(self.rules[0])

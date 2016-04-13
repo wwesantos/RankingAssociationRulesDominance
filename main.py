@@ -1,10 +1,13 @@
 from AssociationRule import AssociationRule
 from RankRule import RankRule
 from RuleSet import RuleSet
+from optparse import OptionParser
+import sys
 
 if __name__ == '__main__':
 
     file = open("data/RulesArticle.txt","r")
+    #file = open("data/MedidasO.2-4.txt","r")
     fileExit = open("data/RankedRules.txt","w")
 
     #Reading the input file
@@ -12,18 +15,20 @@ if __name__ == '__main__':
     ruleSet = RuleSet(None)
     for line in file:
         atributes = line.split(';')
+        id = atributes[0]
         rule = atributes[1]
-        measures = [float(atributes[i].rstrip('\n')) for i in range(2, atributes.__len__())]
-        ruleSet.appendRule(AssociationRule(rule, measures))
+        measures = [float(atributes[i].rstrip('\n').rstrip('\r')) for i in range(2, atributes.__len__())]
+        ruleSet.appendRule(AssociationRule(id, rule, measures))
 
     #Ranking the rules
-    print("Creating rank...")
-    rankRulesExample = RankRule(ruleSet)
+    print("Creating rank...", end="")
+    rankRule = RankRule(ruleSet)
+    rankedRules = rankRule.getRankedRules()
 
     #Writing output
     print("Creating results file...")
-    for rank, rule in enumerate(rankRulesExample.getRankedRules()):
+    for rule in rankedRules:
         #fileExit.write(str(rank+1) + ";" + str(rule.joinBy(";")) + "\n")
-        fileExit.write(str(rank+1) + ";" + rule.rule + "\n")
+        fileExit.write(rule.__str__()+"\n")
 
     print("Program ended...")
