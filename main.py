@@ -41,7 +41,7 @@ if __name__ == '__main__':
         print('No dataset filename specified, system with exit\n')
         sys.exit('System will exit')
 
-    fileExit = open("data/RankedRules.txt","w")
+    fileExit = open("output/RankedRules.txt","w")
 
     #Ranking the rules
     print("Creating rank...")
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     rankedRules = rankRule.getRankedRules()
 
     #Writing output
-    print("Creating results file ./data/RankedRules.txt...")
+    print("Creating results file ./output/RankedRules.txt...")
 
     for rule in rankedRules:
         if options.all:
@@ -57,5 +57,5 @@ if __name__ == '__main__':
         else:
             fileExit.write(rule.__str__()+"\n")
 
-    print("File ./data/RankedRules.txt created.")
+    print("File ./output/RankedRules.txt created.")
     print("Program finalized.")
