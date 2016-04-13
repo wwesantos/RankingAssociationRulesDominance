@@ -25,6 +25,11 @@ if __name__ == '__main__':
                          dest='input',
                          help='filename containing csv',
                          default=None)
+    optparser.add_option('-a', '--withAllMeasuresAndRules',
+                         dest='all',
+                         help='with all measures and rules',
+                         default=None)
+
     (options, args) = optparser.parse_args()
 
     ruleSet = RuleSet(None)
@@ -45,8 +50,12 @@ if __name__ == '__main__':
 
     #Writing output
     print("Creating results file ./data/RankedRules.txt...")
+
     for rule in rankedRules:
-        fileExit.write(rule.__str__()+"\n")
+        if options.all:
+            fileExit.write(rule.__str__(withMeasuresAndRule=True)+"\n")
+        else:
+            fileExit.write(rule.__str__()+"\n")
 
     print("File ./data/RankedRules.txt created.")
     print("Program finalized.")
