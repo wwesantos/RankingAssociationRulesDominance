@@ -2,7 +2,6 @@ from AssociationRule import AssociationRule
 from RankRule import RankRule
 from RuleSet import RuleSet
 from optparse import OptionParser
-import sys
 
 
 def ruleSetFromFile(fname):
@@ -28,7 +27,7 @@ if __name__ == '__main__':
     optparser.add_option('-o', '--outputFile',
                          dest='output',
                          help='output file',
-                         default="RankedRules.txt")
+                         default="output/RankedRules.txt")
     optparser.add_option('-a', '--withAllMeasuresAndRules',
                          dest='all',
                          help='with all measures and rules',
@@ -36,22 +35,18 @@ if __name__ == '__main__':
 
     (options, args) = optparser.parse_args()
 
-    print("Opening file "+options.input)
     ruleSet = ruleSetFromFile(options.input)
 
     #Ranking the rules
-    print("Creating rank...")
     rankRule = RankRule(ruleSet)
     rankedRules = rankRule.getRankedRules()
 
     #Writing output
-    print("Creating results file /output/"+options.output)
-    output = open("output/"+options.output,"w")
+    output = open(options.output,"w")
     for rule in rankedRules:
         if options.all:
             output.write(rule.__str__(withMeasuresAndRule=True)+"\n")
         else:
             output.write(rule.__str__()+"\n")
 
-    print("File /output/{} created.".format(options.output))
-    print("Program finalized.")
+    print("File {} created.".format(options.output))
