@@ -16,7 +16,7 @@ Authors: S. Bouker ; LIMOS, Clermont Univ., Clermont-Ferrand, France ; R. Saidi 
   <li>-o -> output filename</li>
 </ul>
 <pre><code>
-  		python .\main.py -f .\data\RulesArticle.txt -a y -o .\data\RankedRules.txt
+  		python .\main.py -f .\data\RulesArticle.txt -a y -o .\output\RankedRules.txt
 </code></pre>
 
 <h2>Output</h2>
